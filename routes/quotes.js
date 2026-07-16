@@ -1,11 +1,11 @@
 const express = require("express");
 const router = express.Router();
-const quote = require("../models/quote");
+const Quote = require("../models/Quote");
 
 // Getting all quotes
 router.get("/", async (req, res) => {
     try {
-        const quotes = await quote.find();
+        const quotes = await Quote.find();
         res.json(quotes);
     } catch (error) {
         res.status(500).json({ message: error.message })
@@ -17,9 +17,9 @@ router.get("/:id", getQuote, (req, res) => {
 })
 // Creating one quote
 router.post("/", async (req, res) => {
-    const postedQuote = new quote({
-        quoteAuthor: req.body.quoteAuthor,
-        quoteText: req.body.quoteText
+    const postedQuote = new Quote({
+        author: req.body.author,
+        text: req.body.text
     })
     try {
         const newQuote = await postedQuote.save();
@@ -30,11 +30,11 @@ router.post("/", async (req, res) => {
 })
 // Updating one quote
 router.patch("/:id", getQuote, async (req, res) => {
-    if (req.body.quoteAuthor != null) {
-        res.quote.quoteAuthor = req.body.quoteAuthor;
+    if (req.body.author != null) {
+        res.quote.author = req.body.author;
     }
-    if (req.body.quoteText != null) {
-        res.quote.quoteText = req.body.quoteText;
+    if (req.body.text != null) {
+        res.quote.text = req.body.text;
     }
     try {
         const updatedQuote = await res.quote.save()
@@ -54,16 +54,16 @@ router.delete("/:id", getQuote, async (req, res) => {
 })
 
 async function getQuote(req, res, next) {
-    let fetchedQuote
+    let quote;
     try {
-        fetchedQuote = await quote.findById(req.params.id);
-        if (!fetchedQuote) {
+        quote = await Quote.findById(req.params.id);
+        if (!quote) {
             return res.status(404).json({ message: "Cannot find quote" });
         }
     } catch (error) {
         return res.status(500).json({ message: error.message });
     }
-    res.quote = fetchedQuote;
+    res.quote = quote;
     next();
 }
 

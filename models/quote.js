@@ -1,11 +1,11 @@
 const mongoose = require("mongoose");
 
 const quoteSchema = new mongoose.Schema({
-    quoteAuthor: {
+    author: {
         type: String,
         required: true
     },
-    quoteText: {
+    text: {
         type: String,
         required: true
     },
