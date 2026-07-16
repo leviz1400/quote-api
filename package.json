@@ -1,0 +1,20 @@
+{
+  "name": "quote-api",
+  "version": "1.0.0",
+  "description": "An API that gives you a quote (You can upload a quote too)",
+  "license": "ISC",
+  "author": "Levi",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "devStart": "nodemon server.js"
+  },
+  "dependencies": {
+    "express": "^5.2.1",
+    "mongoose": "^9.7.4"
+  },
+  "devDependencies": {
+    "dotenv": "^17.4.2",
+    "nodemon": "^3.1.14"
+  }
+}
