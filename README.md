@@ -1,4 +1,4 @@
-*NOTE: I plan on expanding the capability of this API. *
+*NOTE: I plan on expanding the capability of this API.*
 # quote-api
 Just a simple Node.js/Express RESTful API to Create, Read, Update, or Delete (CRUD operations) quotes within a MongoDB (full of quotes... when I add more in).
 
