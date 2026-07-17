@@ -4,7 +4,7 @@ require("dotenv").config();
 // Create express app and porting
 const express = require("express");
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 // Import mongoose and connect
 
