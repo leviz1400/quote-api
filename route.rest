@@ -5,6 +5,10 @@ GET http://localhost:3000/quotes/6a57d78d78c28190ab9cd239
 
 ###
 
+GET https://quote-api-2p0h.onrender.com/quotes
+
+###
+
 GET http://localhost:3000/quotes/6a57d78d78c28190ab9cd239
 
 ###
@@ -14,8 +18,19 @@ Content-Type: application/json
 X-API-KEY: quoteKey200
 
 {
-   "author": "Rene Descartes",
-   "text": "I think, therefore I am."
+   "author": "leviz1400",
+   "text": "Hello, Render!"
+}
+
+###
+
+POST https://quote-api-2p0h.onrender.com/quotes
+Content-Type: application/json
+X-API-KEY: quoteKey200
+
+{
+    "author": "leviz1400",
+    "text": "Hello, Render!"
 }
 
 ###
