@@ -1,3 +1,4 @@
+// Import mongoose
 const mongoose = require("mongoose");
 
 const quoteSchema = new mongoose.Schema({
