@@ -5,7 +5,7 @@ Just a simple Node.js/Express RESTful API to Create, Read, Update, or Delete (CR
 ### What to expect from a HTTP GET Request
 ```json
 {
-  "quthor": "Author's Name",
+  "author": "Author's Name",
   "text": "Text of the quote",
   "quoteAccessedDate": "Date that the quote was created"
 }
