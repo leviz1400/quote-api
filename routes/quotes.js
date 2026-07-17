@@ -16,7 +16,7 @@ router.get("/:id", getQuote, (req, res) => {
     res.json(res.quote);
 })
 // Creating one quote
-router.post("/", async (req, res) => {
+router.post("/", authenticateApiKey, async (req, res) => {
     const postedQuote = new Quote({
         author: req.body.author,
         text: req.body.text
@@ -29,7 +29,7 @@ router.post("/", async (req, res) => {
     }
 })
 // Updating one quote
-router.patch("/:id", getQuote, async (req, res) => {
+router.patch("/:id", authenticateApiKey, getQuote, async (req, res) => {
     if (req.body.author != null) {
         res.quote.author = req.body.author;
     }
@@ -44,7 +44,7 @@ router.patch("/:id", getQuote, async (req, res) => {
     }
 })
 // Deleting one quote
-router.delete("/:id", getQuote, async (req, res) => {
+router.delete("/:id", authenticateApiKey, getQuote, async (req, res) => {
     try {
         await res.quote.deleteOne();
         res.json({ message: "Deleted quote" });
@@ -65,6 +65,14 @@ async function getQuote(req, res, next) {
     }
     res.quote = quote;
     next();
+}
+
+function authenticateApiKey(req, res, next) {
+    const apiKey = req.header("X-API-KEY");
+    if (!apiKey || apiKey !== process.env.API_KEY) {
+        return res.status(401).json({ message: "Unauthorized: Invalid API Key" });
+    }
+    next(); // Pass control to the actual route handler
 }
 
 
